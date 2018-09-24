@@ -99,7 +99,7 @@ router.post('/contractPost', (req, res, next) => {
 });
 
 //Delete contract
-router.get('/contract/delete/:contractId', (req, res, next) => {
+router.delete('/contract/:contractId', (req, res, next) => {
     knex('contracts')
         .where('contractId', req.params.contractId)
         .first()
@@ -124,7 +124,7 @@ router.get('/contract/delete/:contractId', (req, res, next) => {
         });
 });
 
-router.get('/contract/assassin/:jobId', (req, res, next) => {
+router.patch('/contract/assassin/:contractId', (req, res, next) => {
     knex('jobs')
         .where('jobId', req.params.jobId)
         .first()

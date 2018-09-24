@@ -78,7 +78,7 @@ router.get('/assassin/:assassinId', (req, res, next) => {
 });
 
 //Add New Assassin
-router.post('/assassinPost', (req, res, next) => {
+router.post('/assassin', (req, res, next) => {
     knex('assassins')
         .insert({assassinName: req.body.assassinName, 
             codeName: req.body.codeName, 
@@ -91,8 +91,8 @@ router.post('/assassinPost', (req, res, next) => {
         .then(() => {
             knex('assassins')
             .orderBy('assassinId')
-            .then((assassins) => {
-                res.render('assassins/assassin', {title: 'Assassins', assassins});
+            .then(() => {
+                res.redirect(302, '/assassin');
             })
         })
         .catch((err) => {

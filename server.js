@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
 const path = require('path');
 const ejs = require('ejs');
+const methodOverride = require('method-override');
 
 const assassins = require('./routes/assassins');
 const contracts = require('./routes/contracts');
