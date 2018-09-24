@@ -62,13 +62,13 @@ router.get('/assassin/edit/:assassinId', (req, res) => {
 router.get('/assassin/:assassinId', (req, res, next) => {
     knex('assassins')
         .where('assassinId', req.params.assassinId)
-        .join('jobs', 'jobs.assassin', 'assassins.assassinId')
-        .join('contracts', 'contracts.contractId', 'jobs.target')
+        .leftJoin('jobs', 'jobs.assassin', 'assassins.assassinId')
+        .leftJoin('contracts', 'contracts.contractId', 'jobs.target')
         .then((assassin) => {
             if (!assassin) {
                 return next();
             }
-
+            console.log(assassin);
             res.render('assassins/profile', {title: `${assassin[0].assassinName}'s Profile`, assassin});
         })
         .catch((err) => {

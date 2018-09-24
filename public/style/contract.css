@@ -2,3 +2,19 @@
     width: 400px;
     height: 400px;
 }
+
+h1  {
+    transform: translate(570px)
+}
+
+.nav {
+    transform: translate(600px);
+}
+
+#home {
+    transform: translate(-20px);
+}
+
+#contract {
+    transform: translate(20px);
+}

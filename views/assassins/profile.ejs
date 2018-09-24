@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/style/contract.css">
     <% include ../partials/header.ejs %>
 </head>
 <body>
@@ -52,7 +53,7 @@
                 <tr>
                     <td><%= assassin[0].contractId %></td>
                     <td><%= assassin[0].targetName %></td>
-                    <td><img src="<%= assassin[0].targetImg %>" alt=""></td>
+                    <td><img class="targetImg" src="<%= assassin[0].targetImg %>" alt=""></td>
                 </tr>
             </tbody>
         </table>

@@ -5,7 +5,7 @@
 }
 
 .nav {
-    transform: translate(600px);
+    transform: translate(600px, 10px);
 }
 
 #home {
