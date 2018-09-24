@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <% include ../partials/header.ejs %>
+</head>
+<body>
+    <h1><%= contract.targetName %>'s Contract</h1>
+    <% include ../partials/navButtons.ejs %>
+    <div class='table'>
+        <table>
+            <thead>
+                <colgroup span="7"></colgroup>
+                <th>Contract ID</th>
+                <th>Target Name</th>
+                <th>Target Location</th>
+                <th>Target Photo</th>
+                <th>Target Security</th>
+                <th>Client Name</th>
+                <th>Budget</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= contract.contractId%></td>
+                    <td><%= contract.targetName %></td>
+                    <td><%= contract.targetLocation %></td>
+                    <td><img src="<%= contract.targetImg %>" alt=""></td>
+                    <td><%= contract.targetSecurity %></td>
+                    <td><%= contract.clientName %></td>
+                    <td><%= contract.budget %></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="/contract/edit/<%= contract.contractId %>"><button>Edit contract</button></a>
+    <a href="/contract/delete/<%= contract.contractId %>"><button>Remove contract</button></a>
+    <div>
+        <h1>Assigned Assassins</h1>
+        <table>
+            <thead>
+                <th>Job Id</th>
+                <th>Assassin</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= contract.jobId %></td>
+                    <td><%= contract.assassinName %></td>
+                </tr>
+            </tbody>
+        </table>
+        <form action="/contract/assassin/<%= contract.jobId %>" method="post">
+            <div>
+                <label for="assassinId">Enter Assassin's Id</label>
+                <input type="text" name="assassinId" required>
+            </div>
+            <div>
+                <button type="submit">Assign!</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

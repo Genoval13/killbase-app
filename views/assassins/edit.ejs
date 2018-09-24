@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <% include ../partials/header.ejs %>
+</head>
+<body>
+    <h1>Edit Assassin</h1>
+    <% include ../partials/navButtons.ejs %>
+    <form action="/assassin/patch/<%= assassins[0].assassinId %>" method="post">
+        <div>
+            <label for="assassinName">Edit your name</label>
+            <input type="text" name="assassinName" value="<%= assassins[0].assassinName %>">
+        </div>
+        <div>
+            <label for="codeName">Edit your code name</label>
+            <input type="text" name="codeName" value="<%= assassins[0].codeName %>">
+        </div>
+        <div>
+            <label for="weapon">Edit your preferred weapon</label>
+            <input type="text" name="weapon" value="<%= assassins[0].weapon %>">
+        </div>
+        <div>
+            <label for="contactInfo">Enter your contact email</label>
+            <input type="email" name="contactInfo" value="<%= assassins[0].contactInfo %>">
+        </div>
+        <div>
+            <label for="age">Edit your age</label>
+            <input type="text" name="age" value="<%= assassins[0].age %>">
+        </div>
+        <div>
+            <label for="minPrice">Edit your minimum price</label>
+            <input type="text" name="minPrice" value="<%= assassins[0].minPrice %>">
+        </div>
+        <div>
+            <label for="rating">Edit your professional rating</label>
+            <input type="text" name="rating" value="<%= assassins[0].rating %>">
+        </div>
+        <div>
+            <label for="kills">Edit your body count</label>
+            <input type="text" name="kills" value="<%= assassins[0].kills %>">
+        </div>
+        <div>
+            <button type="submit">Go!</button>
+        </div>
+    </form>
+</body>
+</html>

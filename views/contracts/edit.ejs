@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <% include ../partials/header.ejs %>
+</head>
+<body>
+    <h1>Edit Contract</h1>
+    <% include ../partials/navButtons.ejs %>
+    <form action="/contract/patch/<%= contract[0].contractId %>" method="post">
+        <div>
+            <label for="targetName">Edit your target's name</label>
+            <input type="text" name="targetName" value="<%= contract[0].targetName %>">
+        </div>
+        <div>
+            <label for="targetLocation">Edit your target's location</label>
+            <input type="text" name="targetLocation" value="<%= contract[0].targetLocation %>">
+        </div>
+        <div>
+            <label for="targetImg">Edit the link to your target's photo</label>
+            <input type="text" name="targetImg" value="<%= contract[0].targetImg %>">
+        </div>
+        <div>
+            <label for="targetSecurity">Edit your target's security rating</label>
+            <input type="text" name="targetSecurity" value="<%= contract[0].targetSecurity %>">
+        </div>
+        <div>
+            <label for="clientName">Edit the client's name</label>
+            <input type="text" name="clientName" value="<%= contract[0].clientName %>">
+        </div>
+        <div>
+            <label for="budget">Edit your maximum budget</label>
+            <input type="text" name="budget" value="<%= contract[0].budget %>">
+        </div>
+        <div>
+            <button type="submit">Go!</button>
+        </div>
+    </form>
+</body>
+</html>

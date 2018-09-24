@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <% include ../partials/header.ejs %>
+</head>
+<body>
+    <h1><%= assassin.assassinName %>'s Profile</h1>
+    <% include ../partials/navButtons.ejs %>
+    <div class='table'>
+        <table>
+            <thead>
+                <colgroup span="8"></colgroup>
+                <th>Assassin ID</th>
+                <th>Assassin Name</th>
+                <th>Code Name</th>
+                <th>Weapon</th>
+                <th>Contact Info</th>
+                <th>Age</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Kills</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= assassin.assassinId%></td>
+                    <td><%= assassin.assassinName %></td>
+                    <td><%= assassin.codeName %></td>
+                    <td><%= assassin.weapon %></td>
+                    <td><%= assassin.contactInfo %></td>
+                    <td><%= assassin.age %></td>
+                    <td><%= assassin.minPrice %></td>
+                    <td><%= assassin.rating %></td>
+                    <td><%= assassin.kills %></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="/assassin/edit/<%= assassin.assassinId %>"><button>Edit Assassin</button></a>
+    <a href="/assassin/delete/<%= assassin.assassinId %>"><button>Remove Assassin</button></a>
+    <div>
+        <h1>Current Contracts</h1>
+        <table>
+            <thead>
+                <th><a href="contract/<%= assassin.contractId %>"></a> Contract Id</th>
+                <th>Target</th>
+                <th>Target Photo</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= assassin.contractId %></td>
+                    <td><%= assassin.targetName %></td>
+                    <td><img src="<%= assassin.targetImg %>" alt=""></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

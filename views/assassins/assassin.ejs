@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <% include ../partials/header.ejs %>
+</head>
+<body>
+    <h1>Current Assassins</h1>
+    <% include ../partials/navButtons.ejs %>
+    <div class='table'>
+        <table>
+            <thead>
+                <colgroup span="9"></colgroup>
+                <th>Assassin ID</th>
+                <th>Assassin Name</th>
+                <th>Code Name</th>
+                <th>Weapon</th>
+                <th>Contact Info</th>
+                <th>Age</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Kills</th>
+            </thead>
+            <% assassins.forEach(function(assassins){ %>
+            <tbody>
+                <tr>
+                    <td><a href="/assassin/<%= assassins.assassinId %>"><button><%= assassins.assassinId %></button></a></td>
+                    <td><%= assassins.assassinName %></td>
+                    <td><%= assassins.codeName %></td>
+                    <td><%= assassins.weapon %></td>
+                    <td><%= assassins.contactInfo %></td>
+                    <td><%= assassins.age %></td>
+                    <td><%= assassins.minPrice %></td>
+                    <td><%= assassins.rating %></td>
+                    <td><%= assassins.kills %></td>
+                </tr>
+            </tbody>
+            <% })%>
+        </table>
+    </div>
+    <a href="/assassin/new"><button>Add New Assassin</button></a>
+</body>
+</html>

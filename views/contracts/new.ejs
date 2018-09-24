@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <% include ../partials/header.ejs %>
+</head>
+<body>
+    <h1>Add New Contract</h1>
+    <% include ../partials/navButtons.ejs %>
+    <form action="/contractPost" method="post">
+        <div>
+            <label for="targetName">Enter your target's name</label>
+            <input type="text" name="targetName">
+        </div>
+        <div>
+            <label for="targetLocation">Enter your target's location</label>
+            <input type="text" name="targetLocation">
+        </div>
+        <div>
+            <label for="targetImg">Enter a link to your target's photo</label>
+            <input type="text" name="targetImg">
+        </div>
+        <div>
+            <label for="targetSecurty">Enter your target's security rating</label>
+            <input type="text" name="targetSecurty">
+        </div>
+        <div>
+            <label for="clientName">Enter the client's name</label>
+            <input type="text" name="clientName">
+        </div>
+        <div>
+            <label for="budget">Enter your maximum budget</label>
+            <input type="text" name="budget">
+        </div>
+        <div>
+            <button type="submit">Go!</button>
+        </div>
+    </form>
+</body>
+</html>

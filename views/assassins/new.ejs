@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <% include ../partials/header.ejs %>
+</head>
+<body>
+    <h1>Add New Assassin</h1>
+    <% include ../partials/navButtons.ejs %>
+    <form action="/assassinPost" method="post">
+        <div>
+            <label for="assassinName">Enter your name</label>
+            <input type="text" name="assassinName">
+        </div>
+        <div>
+            <label for="codeName">Enter your code name</label>
+            <input type="text" name="codeName">
+        </div>
+        <div>
+            <label for="weapon">Enter your preferred weapon</label>
+            <input type="text" name="weapon">
+        </div>
+        <div>
+            <label for="contactInfo">Enter your contact info</label>
+            <input type="text" name="contactInfo">
+        </div>
+        <div>
+            <label for="age">Enter your age</label>
+            <input type="text" name="age">
+        </div>
+        <div>
+            <label for="minPrice">Enter your minimum price</label>
+            <input type="text" name="minPrice">
+        </div>
+        <div>
+            <label for="rating">Enter your professional rating</label>
+            <input type="text" name="rating">
+        </div>
+        <div>
+            <label for="kills">Enter your body count</label>
+            <input type="text" name="kills">
+        </div>
+        <div>
+            <button type="submit">Go!</button>
+        </div>
+    </form>
+</body>
+</html>
