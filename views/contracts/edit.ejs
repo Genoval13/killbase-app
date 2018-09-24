@@ -9,7 +9,7 @@
 <body>
     <h1>Edit Contract</h1>
     <% include ../partials/navButtons.ejs %>
-    <form action="/contract/patch/<%= contract[0].contractId %>" method="post">
+    <form action="/contract/patch/<%= contract[0].contractId %>?_method=patch" method="post">
         <div>
             <label for="targetName">Edit your target's name</label>
             <input type="text" name="targetName" value="<%= contract[0].targetName %>">

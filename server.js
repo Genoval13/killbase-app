@@ -12,6 +12,7 @@ const contracts = require('./routes/contracts');
 app.disable('x-powered-by');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 app.use(express.static(path.join('public')));
 
 app.set('views', path.join(__dirname, 'views'));

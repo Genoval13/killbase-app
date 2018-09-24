@@ -16,7 +16,7 @@ router.get('/contract/new', (_req, res) => {
 });
 
 //Update Contract
-router.post('/contract/patch/:contractId', (req, res, next) => {
+router.patch('/contract/patch/:contractId', (req, res, next) => {
     knex('contracts')
         .where('contractId', req.params.contractId)
         .first()
@@ -62,16 +62,18 @@ router.get('/contract/:contractId', (req, res, next) => {
     knex('contracts')
         .where('contractId', req.params.contractId)
         .first()
-        .join('assassins', 'assassins.assassinId', 'contracts.contractId')
-        .join('jobs', 'jobs.jobId', 'contracts.contractId')
+        .leftJoin('jobs', 'jobs.target', 'contracts.contractId')
+        .leftJoin('assassins', 'assassins.assassinId', 'jobs.assassin')
         .then((contract) => {
+            console.log(contract)
             if (!contract) {
                 return next();
             }
-
+            console.log('booyah')
             res.render('contracts/contractProfile', {title: `${contract.targetName}'s Contract`, contract});
         })
         .catch((err) => {
+            console.log(err);
             next(err);
         });
 });

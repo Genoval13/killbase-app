@@ -40,8 +40,8 @@ router.post('/assassin/patch/:assassinId', (req, res, next) => {
         .then(() => {
             knex('assassins')
             .orderBy('assassinId')
-            .then((assassins) => {
-                res.render('assassins/assassin', {title: 'Assassins', assassins});
+            .then(() => {
+                res.redirect('/assassin');
             })
         })
         .catch((err) => {
@@ -92,7 +92,7 @@ router.post('/assassin', (req, res, next) => {
             knex('assassins')
             .orderBy('assassinId')
             .then(() => {
-                res.redirect(302, '/assassin');
+                res.redirect('/assassin');
             })
         })
         .catch((err) => {
