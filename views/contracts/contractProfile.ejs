@@ -7,7 +7,7 @@
     <% include ../partials/header.ejs %>
 </head>
 <body>
-    <h1><%= contract.targetName %>'s Contract</h1>
+    <h1><%= contract[0].targetName %>'s Contract</h1>
     <% include ../partials/navButtons.ejs %>
     <div class='table'>
         <table>
@@ -23,38 +23,45 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><%= contract.contractId%></td>
-                    <td><%= contract.targetName %></td>
-                    <td><%= contract.targetLocation %></td>
-                    <td><img src="<%= contract.targetImg %>" alt=""></td>
-                    <td><%= contract.targetSecurity %></td>
-                    <td><%= contract.clientName %></td>
-                    <td><%= contract.budget %></td>
+                    <td><%= contract[0].contractId%></td>
+                    <td><%= contract[0].targetName %></td>
+                    <td><%= contract[0].targetLocation %></td>
+                    <td><img src="<%= contract[0].targetImg %>" alt=""></td>
+                    <td><%= contract[0].targetSecurity %></td>
+                    <td><%= contract[0].clientName %></td>
+                    <td><%= contract[0].budget %></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <a href="/contract/edit/<%= contract.contractId %>"><button>Edit contract</button></a>
-    <a href="/contract/delete/<%= contract.contractId %>"><button>Remove contract</button></a>
+    <a href="/contract/edit/<%= contract[0].contractId %>"><button>Edit contract</button></a>
+    <a href="/contract/delete/<%= contract[0].contractId %>"><button>Remove contract</button></a>
     <div>
         <h1>Assigned Assassins</h1>
         <table>
             <thead>
+                <th>Assassin ID</th>
                 <th>Assassin</th>
             </thead>
+            <% contract.forEach(function(contract){ %>
             <tbody>
                 <tr>
+                    <td><%= contract.assassinId %></td>
                     <td><%= contract.assassinName %></td>
                 </tr>
             </tbody>
+            <% }) %>
         </table>
-        <form action="/contract/assassin/<%= contract.contractId %>" method="post">
+        <form action="/contract/assassin/<%= contract[0].contractId %>" method="post">
             <div>
-                <label for="assassinId">Enter Assassin's Id</label>
-                <input type="text" name="assassinId" required>
+                <input type="hidden" name="jobId" value="<%= contract[0].jobId %>">
+                <input type="hidden" name="target" value="<%= contract[0].contractId %>">
+                <label for="assassin">Enter Assassin's Id</label>
+                <input type="text" name="assassin" required>
             </div>
             <div>
                 <button type="submit">Assign!</button>
+                <button type="submit" formaction="/contract/assassin/<%= contract[0].contractId %>?_method=delete">Remove!</button>
             </div>
         </form>
     </div>

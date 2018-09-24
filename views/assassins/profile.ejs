@@ -7,7 +7,7 @@
     <% include ../partials/header.ejs %>
 </head>
 <body>
-    <h1><%= assassin.assassinName %>'s Profile</h1>
+    <h1><%= assassin[0].assassinName %>'s Profile</h1>
     <% include ../partials/navButtons.ejs %>
     <div class='table'>
         <table>
@@ -25,34 +25,34 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><%= assassin.assassinId%></td>
-                    <td><%= assassin.assassinName %></td>
-                    <td><%= assassin.codeName %></td>
-                    <td><%= assassin.weapon %></td>
-                    <td><%= assassin.contactInfo %></td>
-                    <td><%= assassin.age %></td>
-                    <td><%= assassin.minPrice %></td>
-                    <td><%= assassin.rating %></td>
-                    <td><%= assassin.kills %></td>
+                    <td><%= assassin[0].assassinId%></td>
+                    <td><%= assassin[0].assassinName %></td>
+                    <td><%= assassin[0].codeName %></td>
+                    <td><%= assassin[0].weapon %></td>
+                    <td><%= assassin[0].contactInfo %></td>
+                    <td><%= assassin[0].age %></td>
+                    <td><%= assassin[0].minPrice %></td>
+                    <td><%= assassin[0].rating %></td>
+                    <td><%= assassin[0].kills %></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <a href="/assassin/edit/<%= assassin.assassinId %>"><button>Edit Assassin</button></a>
-    <a href="/assassin/delete/<%= assassin.assassinId %>"><button>Remove Assassin</button></a>
+    <a href="/assassin/edit/<%= assassin[0].assassinId %>"><button>Edit Assassin</button></a>
+    <a href="/assassin/delete/<%= assassin[0].assassinId %>"><button>Remove Assassin</button></a>
     <div>
         <h1>Current Contracts</h1>
         <table>
             <thead>
-                <th><a href="contract/<%= assassin.contractId %>"></a> Contract Id</th>
+                <th><a href="contract/<%= assassin[0].contractId %>"></a> Contract Id</th>
                 <th>Target</th>
                 <th>Target Photo</th>
             </thead>
             <tbody>
                 <tr>
-                    <td><%= assassin.contractId %></td>
-                    <td><%= assassin.targetName %></td>
-                    <td><img src="<%= assassin.targetImg %>" alt=""></td>
+                    <td><%= assassin[0].contractId %></td>
+                    <td><%= assassin[0].targetName %></td>
+                    <td><img src="<%= assassin[0].targetImg %>" alt=""></td>
                 </tr>
             </tbody>
         </table>

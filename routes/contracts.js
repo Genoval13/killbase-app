@@ -38,8 +38,8 @@ router.patch('/contract/patch/:contractId', (req, res, next) => {
         .then(() => {
             knex('contracts')
             .orderBy('contractId')
-            .then((contracts) => {
-                res.render('contracts/contract', {title: 'contracts', contracts});
+            .then(() => {
+                res.redirect('/contract');
             })
         })
         .catch((err) => {
@@ -52,8 +52,7 @@ router.get('/contract/edit/:contractId', (req, res) => {
     knex('contracts')
         .where('contractId', req.params.contractId)
         .then((contract) => {
-            console.log(contract);
-            res.render('contracts/edit', {title: `Edit ${contract[0].contractName}`, contract});
+            res.render('contracts/edit', {title: `Edit ${contract[0].targetName}`, contract});
         })
 });
 
@@ -61,16 +60,15 @@ router.get('/contract/edit/:contractId', (req, res) => {
 router.get('/contract/:contractId', (req, res, next) => {
     knex('contracts')
         .where('contractId', req.params.contractId)
-        .first()
+        // .first()
         .leftJoin('jobs', 'jobs.target', 'contracts.contractId')
         .leftJoin('assassins', 'assassins.assassinId', 'jobs.assassin')
         .then((contract) => {
-            console.log(contract)
             if (!contract) {
                 return next();
             }
-            console.log('booyah')
-            res.render('contracts/contractProfile', {title: `${contract.targetName}'s Contract`, contract});
+
+            res.render('contracts/contractProfile', {title: `${contract[0].targetName}'s Contract`, contract});
         })
         .catch((err) => {
             console.log(err);
@@ -91,8 +89,8 @@ router.post('/contractPost', (req, res, next) => {
         .then(() => {
             knex('contracts')
             .orderBy('contractId')
-            .then((contracts) => {
-                res.render('contracts/contract', {title: 'contracts', contracts});
+            .then(() => {
+                res.redirect('/contract');
             })
         })
         .catch((err) => {
@@ -101,7 +99,7 @@ router.post('/contractPost', (req, res, next) => {
 });
 
 //Delete contract
-router.delete('/contract/:contractId', (req, res, next) => {
+router.get('/contract/delete/:contractId', (req, res, next) => {
     knex('contracts')
         .where('contractId', req.params.contractId)
         .first()
@@ -117,8 +115,8 @@ router.delete('/contract/:contractId', (req, res, next) => {
         .then(() => {
             knex('contracts')
                 .orderBy('contractId')
-                .then((contracts) => {
-                    res.render('contracts/contract', {title: `contracts`, contracts})
+                .then(() => {
+                    res.redirect('/contract')
                 })
         })
         .catch((err) => {
@@ -126,33 +124,47 @@ router.delete('/contract/:contractId', (req, res, next) => {
         });
 });
 
-router.patch('/contract/assassin/:contractId', (req, res, next) => {
+//Add Assassin to Contract
+router.post('/contract/assassin/:contractId', (req, res, next) => {
     knex('jobs')
-        .where('jobId', req.params.jobId)
-        .first()
-        .join('assassins', 'assassins.assassinId', 'jobs.assassinId')
-        .join('contracts', 'contracts.contractId', 'jobs.contractId')
-        .then((contract) => {
-            if (!contract) {
+        .then((jobs) => {
+            if (!jobs) {
                 return next();
             }
 
             return knex('jobs')
-                .where('jobId', '=', jobs.jobId)
-                .insert({assassinId: req.body.assassinId,
-                contractId: req.body.contractId
-            })
+                .insert({assassin: req.body.assassin,
+                target: req.body.target
+                }, '*')
         })
-        .then(() => {
             knex('contracts')
                 .orderBy('contractId')
-                .then((contracts) => {
-                    res.render('contract/:contractId', {title: `Contracts`, contracts})
+                .then(() => {
+                    res.redirect('/contract')
                 })
-        })
         .catch((err) => {
             next(err);
         });
 });
+
+//Remove Assassin from Contract
+router.delete('/contract/assassin/:contractId', (req, res, next) => {
+    knex('jobs')
+        .then(() => {
+            return knex('jobs')
+                .where('assassin', '=', req.body.assassin)
+                .del()
+        })
+        .then(() => {
+            knex('contracts')
+                .orderBy('contractId')
+                .then(() => {
+                    res.redirect('/contract')
+                })
+        })
+        .catch((err) => {
+            next(err);
+        })
+})
 
 module.exports = router;

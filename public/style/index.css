@@ -1,4 +1,17 @@
 .indexImg {
-    width: 300px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
+    transform: translate(200px);
+}
+
+.nav {
+    transform: translate(600px);
+}
+
+#home {
+    transform: translate(-20px);
+}
+
+#contract {
+    transform: translate(20px);
 }

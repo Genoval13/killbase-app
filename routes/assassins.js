@@ -62,7 +62,6 @@ router.get('/assassin/edit/:assassinId', (req, res) => {
 router.get('/assassin/:assassinId', (req, res, next) => {
     knex('assassins')
         .where('assassinId', req.params.assassinId)
-        .first()
         .join('jobs', 'jobs.assassin', 'assassins.assassinId')
         .join('contracts', 'contracts.contractId', 'jobs.target')
         .then((assassin) => {
@@ -70,7 +69,7 @@ router.get('/assassin/:assassinId', (req, res, next) => {
                 return next();
             }
 
-            res.render('assassins/assassinProfile', {title: `${assassin.assassinName}'s Profile`, assassin});
+            res.render('assassins/profile', {title: `${assassin[0].assassinName}'s Profile`, assassin});
         })
         .catch((err) => {
             next(err);
@@ -117,8 +116,8 @@ router.get('/assassin/delete/:assassinId', (req, res, next) => {
         .then(() => {
             knex('assassins')
                 .orderBy('assassinId')
-                .then((assassins) => {
-                    res.render('assassins/assassin', {title: `Assassins`, assassins})
+                .then(() => {
+                    res.redirect('/assassin')
                 })
         })
         .catch((err) => {
